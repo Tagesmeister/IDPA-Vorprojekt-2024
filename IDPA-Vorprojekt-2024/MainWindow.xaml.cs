@@ -20,5 +20,10 @@ namespace IDPA_Vorprojekt_2024
         {
             InitializeComponent();
         }
+
+        private void ButtonCalculate_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
