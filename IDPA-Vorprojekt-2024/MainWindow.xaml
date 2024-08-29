@@ -13,31 +13,31 @@
         <Label Content="Hunt: Showdown 1896" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" FontFamily="Magneto" FontSize="40" FontWeight="Bold" Foreground="Black"/>
         <Canvas HorizontalAlignment="Center"  Margin="25,113,0,280" Width="600">
             <Label Content="Jahresgewinn:" FontSize="18" Width="123" HorizontalAlignment="Center" Canvas.Left="38" VerticalAlignment="Top"/>
-            <TextBox HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="356" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="160" Canvas.Top="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxJahresgewinn" HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="356" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="160" Canvas.Top="4" VerticalAlignment="Center"/>
             <Rectangle Height="1" Stroke="#FF693A1B" Width="527" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="38" Canvas.Top="33" VerticalAlignment="Center"/>
             <Label Content="CHF" FontSize="18" Width="44" Canvas.Left="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Canvas HorizontalAlignment="Center"  Margin="25,154,0,239" Width="600">
             <Label Content="Aktien und Partizipationskapital:" FontSize="18" Width="264" HorizontalAlignment="Left" Canvas.Left="38" VerticalAlignment="Center"/>
-            <TextBox HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="209" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="307" Canvas.Top="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxAktienundPartizipationskapital" HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="209" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="307" Canvas.Top="4" VerticalAlignment="Center"/>
             <Rectangle Height="1" Stroke="#FF693A1B" Width="527" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="38" Canvas.Top="33" VerticalAlignment="Center"/>
             <Label Content="CHF" FontSize="18" Width="44" Canvas.Left="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Canvas HorizontalAlignment="Center"  Margin="25,195,0,198" Width="600">
             <Label Content="Gesetzliche Reserven:" FontSize="18" Width="181" HorizontalAlignment="Left" Canvas.Left="38" VerticalAlignment="Center"/>
-            <TextBox HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="292" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="224" Canvas.Top="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxGesetzlicheReserven" HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="292" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="224" Canvas.Top="4" VerticalAlignment="Center"/>
             <Rectangle Height="1" Stroke="#FF693A1B" Width="527" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="38" Canvas.Top="33" VerticalAlignment="Center"/>
             <Label Content="CHF" FontSize="18" Width="44" Canvas.Left="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Canvas HorizontalAlignment="Center"  Margin="25,236,0,157" Width="600">
             <Label Content="Gewinn- oder Verlustvortrag:" FontSize="18" Width="239" HorizontalAlignment="Left" Canvas.Left="38" VerticalAlignment="Center"/>
-            <TextBox HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="234" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="282" Canvas.Top="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxGewinnOderVerlustvortrag" HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="234" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="282" Canvas.Top="4" VerticalAlignment="Center"/>
             <Rectangle Height="1" Stroke="#FF693A1B" Width="527" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="38" Canvas.Top="33" VerticalAlignment="Center"/>
             <Label Content="CHF" FontSize="18" Width="44" Canvas.Left="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Canvas HorizontalAlignment="Center"  Margin="25,277,0,116" Width="600">
             <Label Content="Gewünschte Dividende:" FontSize="18" Width="195" HorizontalAlignment="Left" Canvas.Left="38" VerticalAlignment="Center"/>
-            <TextBox HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="278" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="238" Canvas.Top="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxGewünschteDividende" HorizontalContentAlignment="Right" TextWrapping="Wrap" Text="" Width="278" BorderBrush="{x:Null}" FontSize="18" Height="28" HorizontalAlignment="Left" Canvas.Left="238" Canvas.Top="4" VerticalAlignment="Center"/>
             <Rectangle Height="1" Stroke="#FF693A1B" Width="527" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="38" Canvas.Top="33" VerticalAlignment="Center"/>
             <Label Content="%" FontSize="18" Width="27" Canvas.Left="538" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
