@@ -21,7 +21,6 @@ namespace IDPA_Vorprojekt_2024.Classes
 
         private double _availableWin;
         private double _baseDividend;
-        // private double _voluntaryReserve;
 
         private double _availableRestForDividend;
         private double _additionalDivident;
@@ -86,7 +85,6 @@ namespace IDPA_Vorprojekt_2024.Classes
         public double CalculateAvailableRestForDividend()
         {
             _baseDividend = (_userValue.AktienUndPartizipationskapital / 100) * 5;
-            //Freiwillige gesetzliche Reserve ist vermutlich nicht gewollt, Nochmals nachfragen!
             return _availableWin - _baseDividend;
         }
         public double CalculateNewProfitCarriedForward()
