@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace IDPA_Vorprojekt_2024.Classes
-{
-    public class ValueCalculator
-    {
-        private UserValues _userValues;
+﻿        private UserValues _userValues;
         private OutputValues _outputValues = new OutputValues();
 
         public ValueCalculator(UserValues userValues)
-        {
+        public ValueCalculator(UserValues userValues)
             _userValues = userValues;
             CalculateOutputValues();
         }
@@ -49,10 +37,11 @@ namespace IDPA_Vorprojekt_2024.Classes
         {
             int additionalDividendPercentage = (int)Math.Floor(_outputValues.RemainingAmountForAdditionalDividend / (0.011 * _userValues.AktienUndPartizipationskapital));
 
-            if(_userValues.GewünschteDividende > additionalDividendPercentage)
+            if (_userValues.GewünschteDividende > additionalDividendPercentage)
             {
                 MessageBox.Show("Die gewünschte Dividende ist grösser als die maximal zulässige Dividende. Für die folgende Berechnung wird die maximal mögliche Dividende verwendet.", "Ungültige gewünschte Dividende");
-            } else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
+            }
+            else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
 
             double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
             double secondAdditionalDividend = 0.1 * additionalDividend;
