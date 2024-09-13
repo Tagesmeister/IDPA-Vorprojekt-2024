@@ -20,7 +20,7 @@ namespace IDPA_Vorprojekt_2024.Classes
         private double _gewinnOderVerlustvortrag;
         private double _gewünschteDividende;
 
-        UserValues(string jahresgewinn, string aktienUndPartizipationskapital, string gesetzlicheReserven, string gewinnOderVerlustvortrag, string gewünschteDividende)
+        public UserValues(string jahresgewinn, string aktienUndPartizipationskapital, string gesetzlicheReserven, string gewinnOderVerlustvortrag, string gewünschteDividende)
         {
             _jahresgewinn = Convert.ToDouble(jahresgewinn);
             _aktienUndPartizipationskapital = Convert.ToDouble(aktienUndPartizipationskapital);
