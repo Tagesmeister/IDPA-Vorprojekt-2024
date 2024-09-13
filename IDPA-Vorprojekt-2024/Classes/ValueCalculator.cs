@@ -48,11 +48,11 @@ namespace IDPA_Vorprojekt_2024.Classes
 
 
         }
-        private double CalculateFinancialStatement()
+        public double CalculateFinancialStatement()
         {
             return _userValue.GewinnOderVerlustvortrag + _userValue.Jahresgewinn;
         }
-        private double CalculateAvailableWin()
+        public double CalculateAvailableWin()
         {
 
             if (IsFirstReserveToHigh())
@@ -73,7 +73,7 @@ namespace IDPA_Vorprojekt_2024.Classes
 
             return _financialStatementWin - _firstReserve;
         }
-        private bool IsFirstReserveToHigh()
+        public bool IsFirstReserveToHigh()
         {
             _percentReserveFromStock = (100 / _userValue.AktienUndPartizipationskapital) * _userValue.GesetzlicheReserven;
 
@@ -83,13 +83,13 @@ namespace IDPA_Vorprojekt_2024.Classes
             }
             return false;
         }
-        private double CalculateAvailableRestForDividend()
+        public double CalculateAvailableRestForDividend()
         {
             _baseDividend = (_userValue.AktienUndPartizipationskapital / 100) * 5;
             //Freiwillige gesetzliche Reserve ist vermutlich nicht gewollt, Nochmals nachfragen!
             return _availableWin - _baseDividend;
         }
-        private double CalculateNewProfitCarriedForward()
+        public double CalculateNewProfitCarriedForward()
         {
             double _maxAdditionalDivident = Math.Floor(_availableRestForDividend / ((_userValue.AktienUndPartizipationskapital / 100) * 1.1));
 
