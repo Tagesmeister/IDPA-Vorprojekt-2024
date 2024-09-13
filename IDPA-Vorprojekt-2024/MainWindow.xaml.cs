@@ -19,8 +19,6 @@ namespace IDPA_Vorprojekt_2024
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<double> _calculatedPlan = new List<double>();
-
         private UserValues _userValue;
         private ValueCalculator _valuecalculator;
 

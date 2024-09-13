@@ -4,100 +4,74 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IDPA_Vorprojekt_2024.Classes
 {
     public class ValueCalculator
     {
-        private List<double> _calculatedPlan;
-        private UserValues _userValue;
-        private DisplayCalculatedWindow _displayCalculatedWindow;
+        private UserValues _userValues;
+        private OutputValues _outputValues = new OutputValues();
 
-        private double _percentReserveFromStock;
-
-
-        private double _financialStatementWin;
-        private double _firstReserve;
-
-        private double _availableWin;
-        private double _baseDividend;
-
-        private double _availableRestForDividend;
-        private double _additionalDivident;
-        private double _secondReserve;
-
-        private double _newProfitCarriedForward;
-
-
-        public ValueCalculator(UserValues userValue)
+        public ValueCalculator(UserValues userValues)
         {
-            _userValue = userValue;
-            _displayCalculatedWindow = new DisplayCalculatedWindow();
-            StartCalculatePlan();
+            _userValues = userValues;
+            CalculateOutputValues();
         }
 
-        public void StartCalculatePlan()
+        private void CalculateOutputValues()
         {
-            _calculatedPlan = new List<double>();
+            _outputValues.NetIncome = CalculateNetIncome();
+            _outputValues.AvailableProfit = CalculateAvailableProfit();
+            _outputValues.RemainingAmountForAdditionalDividend = CalculateRemainingAmountForAdditionalDividend();
+            _outputValues.RetainedEarnings = CalculateRetainedEarnings();
 
-            _calculatedPlan.Add(_financialStatementWin = CalculateFinancialStatement());
-            _calculatedPlan.Add(_availableWin = CalculateAvailableWin());
-            _calculatedPlan.Add(_availableRestForDividend = CalculateAvailableRestForDividend());
-            _calculatedPlan.Add(_newProfitCarriedForward = CalculateNewProfitCarriedForward());
-
-
+            MessageBox.Show($"Bilanzgewinn: {_outputValues.NetIncome}\nVerfügbarer Gewinn: {_outputValues.AvailableProfit}\nRest für zus. Dividende: {_outputValues.RemainingAmountForAdditionalDividend}\nNeuer Gewinnvortrag: {_outputValues.RetainedEarnings}");
         }
-        public double CalculateFinancialStatement()
-        {
-            return _userValue.GewinnOderVerlustvortrag + _userValue.Jahresgewinn;
-        }
-        public double CalculateAvailableWin()
-        {
 
-            if (IsFirstReserveToHigh())
+        private double CalculateNetIncome() //Bilanzgewinn
+        {
+            return _userValues.GewinnOderVerlustvortrag + _userValues.Jahresgewinn;
+        }
+
+        private double CalculateAvailableProfit() //Verfügbarer Gewinn
+        {
+            return _outputValues.NetIncome - CalculateFirstReserve();
+        }
+
+        private double CalculateRemainingAmountForAdditionalDividend() //Rest für zusätzliche Dividende
+        {
+            double baseDividend = (_userValues.AktienUndPartizipationskapital / 100) * 5;
+            return _outputValues.AvailableProfit - baseDividend;
+        }
+
+        private double CalculateRetainedEarnings() //Neuer Gewinnvortrag
+        {
+            int additionalDividendPercentage = (int)Math.Floor(_outputValues.RemainingAmountForAdditionalDividend / (0.011 * _userValues.AktienUndPartizipationskapital));
+
+            if(_userValues.GewünschteDividende > additionalDividendPercentage)
             {
+                MessageBox.Show("Die gewünschte Dividende ist grösser als die maximal zulässige Dividende. Für die folgende Berechnung wird die maximal mögliche Dividende verwendet.", "Ungültige gewünschte Dividende");
+            } else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
 
-                _firstReserve = (_userValue.Jahresgewinn / 100) * 5;
-
-                if ((_userValue.AktienUndPartizipationskapital / 100) * _percentReserveFromStock + _firstReserve > (_userValue.AktienUndPartizipationskapital / 100) * 20)
-                {
-                    double overShoot = (_userValue.AktienUndPartizipationskapital / 100) * _percentReserveFromStock + _firstReserve - (_userValue.AktienUndPartizipationskapital / 100) * 20;
-
-                    _firstReserve = _firstReserve - overShoot;
-
-                    _firstReserve = Math.Round(_firstReserve, 2);
-
-                }
-            }
-
-            return _financialStatementWin - _firstReserve;
+            double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
+            double secondAdditionalDividend = 0.1 * additionalDividend;
+            return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend - secondAdditionalDividend;
         }
-        public bool IsFirstReserveToHigh()
-        {
-            _percentReserveFromStock = (100 / _userValue.AktienUndPartizipationskapital) * _userValue.GesetzlicheReserven;
 
-            if (_percentReserveFromStock <= 20)
+        private double CalculateFirstReserve()
+        {
+            double firstReserve = 0.05 * _userValues.Jahresgewinn; //5% vom RG
+            if (IsFirstReserveToHigh(firstReserve))
             {
-                return true;
+                firstReserve = 0.2 * _userValues.AktienUndPartizipationskapital - _userValues.GesetzlicheReserven; //Betrag bis 20% AK
             }
-            return false;
+            return firstReserve;
         }
-        public double CalculateAvailableRestForDividend()
-        {
-            _baseDividend = (_userValue.AktienUndPartizipationskapital / 100) * 5;
-            return _availableWin - _baseDividend;
-        }
-        public double CalculateNewProfitCarriedForward()
-        {
-            double _maxAdditionalDivident = Math.Floor(_availableRestForDividend / ((_userValue.AktienUndPartizipationskapital / 100) * 1.1));
 
-            if (_userValue.GewünschteDividende > 0 && _userValue.GewünschteDividende <= _maxAdditionalDivident)
-            {
-                _additionalDivident = (_userValue.AktienUndPartizipationskapital / 100) * _userValue.GewünschteDividende;
-                _secondReserve = (_additionalDivident / 100) * 10;
-            }
-            return _availableRestForDividend - _additionalDivident - _secondReserve;
-
+        private bool IsFirstReserveToHigh(double firstReserve)
+        {
+            return firstReserve + _userValues.GesetzlicheReserven > 0.2 * _userValues.AktienUndPartizipationskapital;
         }
     }
 }
