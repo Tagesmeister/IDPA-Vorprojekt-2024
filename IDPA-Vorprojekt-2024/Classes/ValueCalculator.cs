@@ -23,23 +23,23 @@ namespace IDPA_Vorprojekt_2024.Classes
             MessageBox.Show($"Bilanzgewinn: {_outputValues.NetIncome}\nVerfügbarer Gewinn: {_outputValues.AvailableProfit}\nRest für zus. Dividende: {_outputValues.RemainingAmountForAdditionalDividend}\nNeuer Gewinnvortrag: {_outputValues.RetainedEarnings}");
         }
 
-        private double CalculateNetIncome() //Bilanzgewinn
+        public double CalculateNetIncome() //Bilanzgewinn
         {
             return _userValues.GewinnOderVerlustvortrag + _userValues.Jahresgewinn;
         }
 
-        private double CalculateAvailableProfit() //Verfügbarer Gewinn
+        public double CalculateAvailableProfit() //Verfügbarer Gewinn
         {
             return _outputValues.NetIncome - CalculateFirstReserve();
         }
 
-        private double CalculateRemainingAmountForAdditionalDividend() //Rest für zusätzliche Dividende
+        public double CalculateRemainingAmountForAdditionalDividend() //Rest für zusätzliche Dividende
         {
             double baseDividend = (_userValues.AktienUndPartizipationskapital / 100) * 5;
             return _outputValues.AvailableProfit - baseDividend;
         }
 
-        private double CalculateRetainedEarnings() //Neuer Gewinnvortrag
+        public double CalculateRetainedEarnings() //Neuer Gewinnvortrag
         {
             int additionalDividendPercentage = (int)Math.Floor(_outputValues.RemainingAmountForAdditionalDividend / (0.011 * _userValues.AktienUndPartizipationskapital));
 

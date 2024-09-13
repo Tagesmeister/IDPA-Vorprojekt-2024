@@ -1,4 +1,3 @@
-using IDPA_Vorprojekt_2024;
 using IDPA_Vorprojekt_2024.Classes;
 namespace Test_IDPA
 {
@@ -15,7 +14,7 @@ namespace Test_IDPA
             ValueCalculator valueCalculator = new ValueCalculator(userValues);
 
             //Act
-            result = valueCalculator.CalculateAvailableWin();
+            result = valueCalculator.CalculateAvailableProfit();
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -30,7 +29,7 @@ namespace Test_IDPA
             ValueCalculator valueCalculator = new ValueCalculator(userValues);
 
             //Act
-            result = valueCalculator.CalculateFinancialStatement();
+            result = valueCalculator.CalculateNetIncome();
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -45,7 +44,7 @@ namespace Test_IDPA
             ValueCalculator valueCalculator = new ValueCalculator(userValues);
 
             //Act
-            result = valueCalculator.CalculateAvailableRestForDividend();
+            result = valueCalculator.CalculateRemainingAmountForAdditionalDividend();
 
             //Assert
             Assert.AreEqual(expected, result);
@@ -60,7 +59,7 @@ namespace Test_IDPA
             ValueCalculator valueCalculator = new ValueCalculator(userValues);
 
             //Act
-            result = valueCalculator.CalculateNewProfitCarriedForward();
+            result = valueCalculator.CalculateRetainedEarnings();
 
             //Assert
             Assert.AreEqual(expected, result);
