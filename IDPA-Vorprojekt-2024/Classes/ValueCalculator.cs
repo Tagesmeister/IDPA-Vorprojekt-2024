@@ -13,6 +13,7 @@ namespace IDPA_Vorprojekt_2024.Classes
         private UserValues _userValue;
         private DisplayCalculatedWindow _displayCalculatedWindow;
 
+        private double _percentReserveFromStock;
         
 
         private double _financialStatementWin;
@@ -56,17 +57,27 @@ namespace IDPA_Vorprojekt_2024.Classes
 
             if (IsFirstReserveToHigh())
             {
-
+                
                 _firstReserve = (_userValue.Jahresgewinn / 100) * 5;
+
+                if((_userValue.AktienUndPartizipationskapital / 100) * _percentReserveFromStock + _firstReserve > (_userValue.AktienUndPartizipationskapital / 100) * 20 )
+                {
+                    double overShoot = (_userValue.AktienUndPartizipationskapital / 100) * _percentReserveFromStock + _firstReserve - (_userValue.AktienUndPartizipationskapital / 100) *20;
+
+                    _firstReserve = _firstReserve - overShoot;
+
+                    _firstReserve =  Math.Round(_firstReserve, 2);
+
+                }
             }
 
            return _financialStatementWin - _firstReserve;
         }
         private bool IsFirstReserveToHigh()
         {
-            double sumOfStock = (100 / _userValue.AktienUndPartizipationskapital) * _userValue.GesetzlicheReserven;
+             _percentReserveFromStock = (100 / _userValue.AktienUndPartizipationskapital) * _userValue.GesetzlicheReserven;
 
-            if(sumOfStock <= 20)
+            if(_percentReserveFromStock <= 20)
             {
                 return true;
             }
