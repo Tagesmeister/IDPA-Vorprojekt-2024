@@ -11,10 +11,9 @@ namespace IDPA_Vorprojekt_2024.Classes
     {
         private List<double> _calculatedPlan;
         private UserValues _userValue;
-        private DisplayCalculatedWindow _displayCalculatedWindow;
+
 
         private double _percentReserveFromStock;
-
 
         private double _financialStatementWin;
         private double _firstReserve;
@@ -32,7 +31,6 @@ namespace IDPA_Vorprojekt_2024.Classes
         public ValueCalculator(UserValues userValue)
         {
             _userValue = userValue;
-            _displayCalculatedWindow = new DisplayCalculatedWindow();
             StartCalculatePlan();
         }
 
