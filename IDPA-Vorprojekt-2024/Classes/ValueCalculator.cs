@@ -1,8 +1,14 @@
-﻿        private UserValues _userValues;
+﻿using System.Windows;
+
+namespace IDPA_Vorprojekt_2024.Classes
+{
+    public class ValueCalculator
+    {
+        private UserValues _userValues;
         private OutputValues _outputValues = new OutputValues();
 
         public ValueCalculator(UserValues userValues)
-        public ValueCalculator(UserValues userValues)
+        {
             _userValues = userValues;
             CalculateOutputValues();
         }
