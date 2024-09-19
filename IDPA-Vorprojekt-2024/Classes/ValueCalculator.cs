@@ -54,19 +54,21 @@ namespace IDPA_Vorprojekt_2024.Classes
             return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend - secondAdditionalDividend;
         }
 
-        private double CalculateFirstReserve()
+        private double CalculateFirstReserve() 
         {
-            double firstReserve = 0.05 * _userValues.Jahresgewinn; //5% vom RG
-            if (IsFirstReserveToHigh(firstReserve))
+            double firstReserveLimit = 0.5 * _userValues.AktienUndPartizipationskapital; //Betrag bis 50% AK --> Art. 672 Abs. 2
+
+            double firstReserve = 0.05 * _userValues.Jahresgewinn; //5% vom RG --> Art. 672 Abs. 1
+            if (IsFirstReserveToHigh(firstReserve, firstReserveLimit))
             {
-                firstReserve = 0.2 * _userValues.AktienUndPartizipationskapital - _userValues.GesetzlicheReserven; //Betrag bis 20% AK
+                firstReserve = firstReserveLimit - _userValues.GesetzlicheReserven;
             }
             return firstReserve;
         }
 
-        private bool IsFirstReserveToHigh(double firstReserve)
+        private bool IsFirstReserveToHigh(double firstReserve, double firstReserveLimit)
         {
-            return firstReserve + _userValues.GesetzlicheReserven > 0.2 * _userValues.AktienUndPartizipationskapital;
+            return firstReserve + _userValues.GesetzlicheReserven > firstReserveLimit;
         }
     }
 }
