@@ -20,7 +20,7 @@ namespace IDPA_Vorprojekt_2024.Classes
             _outputValues.RemainingAmountForAdditionalDividend = CalculateRemainingAmountForAdditionalDividend();
             _outputValues.RetainedEarnings = CalculateRetainedEarnings();
 
-            MessageBox.Show($"Bilanzgewinn: {_outputValues.NetIncome}\nVerfügbarer Gewinn: {_outputValues.AvailableProfit}\nRest für zus. Dividende: {_outputValues.RemainingAmountForAdditionalDividend}\nNeuer Gewinnvortrag: {_outputValues.RetainedEarnings}");
+            MessageBox.Show($"Neuer Gewinnvortrag: {_outputValues.RetainedEarnings}\nBeitrag in die gesetzliche Reserve: {_outputValues.BeitragInDieGesetzlicheReserve}\nBetrag der Ausschüttung von Dividenden: {_outputValues.BetragDerAusschüttungVonDividenden}");
         }
 
         public double CalculateNetIncome() //Bilanzgewinn
@@ -36,6 +36,7 @@ namespace IDPA_Vorprojekt_2024.Classes
         public double CalculateRemainingAmountForAdditionalDividend() //Rest für zusätzliche Dividende
         {
             double baseDividend = _userValues.AktienUndPartizipationskapital * 0.05;
+            _outputValues.BetragDerAusschüttungVonDividenden = baseDividend;
             return _outputValues.AvailableProfit - baseDividend;
         }
 
@@ -50,6 +51,7 @@ namespace IDPA_Vorprojekt_2024.Classes
             else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
 
             double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
+            _outputValues.BetragDerAusschüttungVonDividenden += additionalDividend;
             //double secondAdditionalReserve = 0.1 * additionalDividend;
             return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend; //- secondAdditionalReserve;
         }
@@ -63,6 +65,7 @@ namespace IDPA_Vorprojekt_2024.Classes
             {
                 firstReserve = firstReserveLimit - _userValues.GesetzlicheReserven;
             }
+            _outputValues.BeitragInDieGesetzlicheReserve = firstReserve;
             return firstReserve;
         }
 

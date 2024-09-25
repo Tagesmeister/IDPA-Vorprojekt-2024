@@ -6,5 +6,8 @@
         public double AvailableProfit { get; set; } //Verfügbarer Gewinn
         public double RemainingAmountForAdditionalDividend { get; set; } //Rest für zusätzliche Dividende
         public double RetainedEarnings { get; set; } //Gewinnvortrag
+
+        public double BeitragInDieGesetzlicheReserve { get; set; }
+        public double BetragDerAusschüttungVonDividenden { get; set; }
     }
 }
