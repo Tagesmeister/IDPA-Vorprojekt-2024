@@ -22,7 +22,7 @@ namespace IDPA_Vorprojekt_2024.Classes
             _outputValues.RemainingAmountForAdditionalDividend = CalculateRemainingAmountForAdditionalDividend();
             _outputValues.RetainedEarnings = CalculateRetainedEarnings();
 
-            MessageBox.Show($"Neuer Gewinnvortrag: {_outputValues.RetainedEarnings}\nBeitrag in die gesetzliche Reserve: {_outputValues.BeitragInDieGesetzlicheReserve}\nBetrag der Ausschüttung von Dividenden: {_outputValues.BetragDerAusschüttungVonDividenden}");
+            MessageBox.Show($"Beitrag in die gesetzliche Reserve: {_outputValues.BeitragInDieGesetzlicheReserve} CHF\nBeschreibung: Der Beitrag in die gesetzliche Reserve ist der Teil des Gewinns, der zur finanziellen Stabilität des Unternehmens einbehalten wird.\n\nBetrag der Ausschüttung (Dividende): {_outputValues.BetragDerAusschüttungVonDividenden} CHF\nBeschreibung: Der Betrag der Ausschüttung (Dividende) ist der Teil des Gewinns, der an die Aktionäre ausgezahlt wird.\n\nNeuer Gewinn- oder Verlustvortrag: {_outputValues.RetainedEarnings} CHF\nBeschreibung: Der neue Gewinn- oder Verlustvortrag bezeichnet den nicht ausgeschütteten Gewinn oder Verlust, der in die nächste Periode übertragen wird.", "Ausgabe");
         }
 
         public void VerlustVortragBeseitigen()
@@ -82,7 +82,7 @@ namespace IDPA_Vorprojekt_2024.Classes
 
             if (_userValues.GewünschteDividende > additionalDividendPercentage)
             {
-                MessageBox.Show("Die gewünschte Dividende ist grösser als die maximal zulässige Dividende. Für die folgende Berechnung wird die maximal mögliche Dividende verwendet.", "Ungültige gewünschte Dividende");
+                MessageBox.Show($"Die maximal zulässige Dividende beträgt {additionalDividendPercentage}%.\n\nDie gewünschte Dividende ({_userValues.GewünschteDividende}%) ist jedoch grösser als die maximal zulässige Dividende.\nFür die folgende Berechnung wird die maximal mögliche Dividende verwendet.", "Ungültige gewünschte Dividende");
             }
             else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
             if (additionalDividendPercentage < 0) additionalDividendPercentage = 0;
