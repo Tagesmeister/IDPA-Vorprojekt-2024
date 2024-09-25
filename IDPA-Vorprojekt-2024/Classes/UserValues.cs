@@ -2,10 +2,10 @@
 {
     public class UserValues
     {
-        public double Jahresgewinn { get { return _jahresgewinn; } }
+        public double Jahresgewinn { get { return _jahresgewinn; } set { _jahresgewinn = value; } }
         public double AktienUndPartizipationskapital { get { return _aktienUndPartizipationskapital; } }
-        public double GesetzlicheReserven { get { return _gesetzlicheReserven; } }
-        public double GewinnOderVerlustvortrag { get { return _gewinnOderVerlustvortrag; } }
+        public double GesetzlicheReserven { get { return _gesetzlicheReserven; } set { _gesetzlicheReserven = value; } }
+        public double GewinnOderVerlustvortrag { get { return _gewinnOderVerlustvortrag; } set { _gewinnOderVerlustvortrag = value; } }
         public double GewünschteDividende { get { return _gewünschteDividende; } }
 
         private double _jahresgewinn;

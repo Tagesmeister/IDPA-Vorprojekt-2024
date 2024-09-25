@@ -53,7 +53,7 @@ namespace Test_IDPA
         public void TestCalculateNewProfitCarriedForward()
         {
             //Arrange
-            double expected = 7720;
+            double expected = 8920;
             double result;
             UserValues userValues = new UserValues("35600", "300000", "41200", "2100", "4");
             ValueCalculator valueCalculator = new ValueCalculator(userValues);

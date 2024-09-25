@@ -15,12 +15,48 @@ namespace IDPA_Vorprojekt_2024.Classes
 
         private void CalculateOutputValues()
         {
+            if(_userValues.GewinnOderVerlustvortrag < 0) VerlustVortragBeseitigen();
+
             _outputValues.NetIncome = CalculateNetIncome();
             _outputValues.AvailableProfit = CalculateAvailableProfit();
             _outputValues.RemainingAmountForAdditionalDividend = CalculateRemainingAmountForAdditionalDividend();
             _outputValues.RetainedEarnings = CalculateRetainedEarnings();
 
             MessageBox.Show($"Neuer Gewinnvortrag: {_outputValues.RetainedEarnings}\nBeitrag in die gesetzliche Reserve: {_outputValues.BeitragInDieGesetzlicheReserve}\nBetrag der Ausschüttung von Dividenden: {_outputValues.BetragDerAusschüttungVonDividenden}");
+        }
+
+        public void VerlustVortragBeseitigen()
+        {
+            //BESEITIGEN MIT GESETZLICHEN RESERVEN (bis 0)
+            double benötigteGesetzlicheReserven = _userValues.GewinnOderVerlustvortrag * -1;
+            if(_userValues.GesetzlicheReserven >= benötigteGesetzlicheReserven)
+            {
+                _userValues.GewinnOderVerlustvortrag = 0;
+                _userValues.GesetzlicheReserven -= benötigteGesetzlicheReserven;      
+            }
+            else
+            {
+                _userValues.GewinnOderVerlustvortrag += _userValues.GesetzlicheReserven;
+                _userValues.GesetzlicheReserven = 0;
+            }
+
+            //BESEITIGEN MIT JAHRESGEWINN
+            if (_userValues.GewinnOderVerlustvortrag < 0) //Wenn IMMERNOCH Verlustvortrag dann mit Jahresgewinn decken (bis 0)
+            {
+                double benötigterReingewinn = _userValues.GewinnOderVerlustvortrag * -1;
+                if (_userValues.Jahresgewinn >= benötigterReingewinn)
+                {
+                    _userValues.GewinnOderVerlustvortrag = 0;
+                    _userValues.Jahresgewinn -= benötigterReingewinn;
+                }
+                else
+                {
+                    _userValues.GewinnOderVerlustvortrag += _userValues.Jahresgewinn;
+                    _userValues.Jahresgewinn = 0;
+                }
+            }
+
+            MessageBox.Show($"Ein Verlustvortrag lag vor.\nAktueller Verlustvortrag: {_userValues.GewinnOderVerlustvortrag}\nAktuelle gesetzlichen Reserven: {_userValues.GesetzlicheReserven}\nAktueller Jahresgewinn: {_userValues.Jahresgewinn}");
         }
 
         public double CalculateNetIncome() //Bilanzgewinn
@@ -49,6 +85,7 @@ namespace IDPA_Vorprojekt_2024.Classes
                 MessageBox.Show("Die gewünschte Dividende ist grösser als die maximal zulässige Dividende. Für die folgende Berechnung wird die maximal mögliche Dividende verwendet.", "Ungültige gewünschte Dividende");
             }
             else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
+            if (additionalDividendPercentage < 0) additionalDividendPercentage = 0;
 
             double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
             _outputValues.BetragDerAusschüttungVonDividenden += additionalDividend;
