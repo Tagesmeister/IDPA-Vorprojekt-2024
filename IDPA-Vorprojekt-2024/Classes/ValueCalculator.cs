@@ -56,7 +56,7 @@ namespace IDPA_Vorprojekt_2024.Classes
                 }
             }
 
-            MessageBox.Show($"Ein Verlustvortrag lag vor.\nAktueller Verlustvortrag: {_userValues.GewinnOderVerlustvortrag}\nAktuelle gesetzlichen Reserven: {_userValues.GesetzlicheReserven}\nAktueller Jahresgewinn: {_userValues.Jahresgewinn}");
+            //MessageBox.Show($"Ein Verlustvortrag lag vor.\nAktueller Verlustvortrag: {_userValues.GewinnOderVerlustvortrag}\nAktuelle gesetzlichen Reserven: {_userValues.GesetzlicheReserven}\nAktueller Jahresgewinn: {_userValues.Jahresgewinn}");
         }
 
         public double CalculateNetIncome() //Bilanzgewinn
