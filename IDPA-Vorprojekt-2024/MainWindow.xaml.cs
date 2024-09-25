@@ -163,7 +163,7 @@ namespace IDPA_Vorprojekt_2024
                 {
                     UnderlineGewünschteDividende.Stroke = red;
                     validationViolations++;
-                    ToolTipErrors.Content += "Gewünschte Dividende darf nicht negativ sein!";
+                    ToolTipErrors.Content += "Die gewünschte Dividende darf nicht negativ sein!";
                 }
             }
 
