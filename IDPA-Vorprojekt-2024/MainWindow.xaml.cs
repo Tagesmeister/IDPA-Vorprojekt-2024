@@ -33,12 +33,21 @@ namespace IDPA_Vorprojekt_2024
         {
             InitializeComponent();
             ButtonCalculate.IsEnabled = false;
+            SetUpToolTipErrors();
 
             userInputFields.Add(TextBoxJahresgewinn);
             userInputFields.Add(TextBoxAktienUndPartizipationskapital);
             userInputFields.Add(TextBoxGesetzlicheReserven);
             userInputFields.Add(TextBoxGewinnOderVerlustvortrag);
             userInputFields.Add(TextBoxGewünschteDividende);
+        }
+
+        private void SetUpToolTipErrors()
+        {
+            ToolTipErrors.PlacementTarget = this;
+            ToolTipErrors.Placement = System.Windows.Controls.Primitives.PlacementMode.RelativePoint;
+            ToolTipErrors.HorizontalOffset = 0;
+            ToolTipErrors.VerticalOffset = 0;
         }
 
         private void ButtonCalculate_Click(object sender, RoutedEventArgs e)
@@ -104,6 +113,9 @@ namespace IDPA_Vorprojekt_2024
 
         private void Validate()
         {
+            ToolTipErrors.IsOpen = false;
+            ToolTipErrors.Content = "";
+
             int validationViolations = 0;
 
             //Alle Textboxen müssen double und nicht leer sein
@@ -112,6 +124,7 @@ namespace IDPA_Vorprojekt_2024
                 if(!IsDouble(textBox.Text))
                 {
                     validationViolations++;
+                    ToolTipErrors.Content = "Alle Eingabefelder müssen ausgefüllt werden und dürfen nur Zahlen beinhalten --> Maximal zwei Nachkommastellen!\n";
                 }
             }
 
@@ -123,6 +136,7 @@ namespace IDPA_Vorprojekt_2024
                     UnderlineAK.Stroke = red;
                     UnderlineGesReserven.Stroke = red;
                     validationViolations++;
+                    ToolTipErrors.Content += "Die gesetzlichen Reserven dürfen nur 50% vom Aktien- und Partizipationskapital betragen.\n";
                 }
                 else
                 {
@@ -131,17 +145,6 @@ namespace IDPA_Vorprojekt_2024
                 }
             }
 
-            /*
-            //Gewinnvortrag muss grösser als 0 sein.
-            if(IsDouble(TextBoxGewinnOderVerlustvortrag.Text))
-            {
-                if (Convert.ToDouble(TextBoxGewinnOderVerlustvortrag.Text) <= 0)
-                {
-                    UnderlineGewinnOderVerlustvortrag.Stroke = red;
-                    validationViolations++;
-                }
-            }*/
-
             //Jahresgewinn muss grösser als 0 sein.
             if (IsDouble(TextBoxJahresgewinn.Text))
             {
@@ -149,11 +152,13 @@ namespace IDPA_Vorprojekt_2024
                 {
                     UnderlineJahresgewinn.Stroke = red;
                     validationViolations++;
+                    ToolTipErrors.Content += "Der Jahresgewinn darf nicht negativ sein!\n";
                 }
             }
 
             if (validationViolations > 0)
             {
+                ToolTipErrors.IsOpen = true;
                 ButtonCalculate.IsEnabled = false;
                 return;
             }
