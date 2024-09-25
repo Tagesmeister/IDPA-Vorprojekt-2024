@@ -115,10 +115,10 @@ namespace IDPA_Vorprojekt_2024
                 }
             }
 
-            //Ges Reserven dürfen nicht grösser sein als 20% AK
+            //Ges Reserven dürfen nicht grösser sein als 50% AK
             if(IsDouble(TextBoxAktienUndPartizipationskapital.Text) && IsDouble(TextBoxGesetzlicheReserven.Text))
             {
-                if (Convert.ToDouble(TextBoxGesetzlicheReserven.Text) > Convert.ToDouble(TextBoxAktienUndPartizipationskapital.Text) * 0.2)
+                if (Convert.ToDouble(TextBoxGesetzlicheReserven.Text) > Convert.ToDouble(TextBoxAktienUndPartizipationskapital.Text) * 0.5)
                 {
                     UnderlineAK.Stroke = red;
                     UnderlineGesReserven.Stroke = red;
@@ -131,6 +131,7 @@ namespace IDPA_Vorprojekt_2024
                 }
             }
 
+            /*
             //Gewinnvortrag muss grösser als 0 sein.
             if(IsDouble(TextBoxGewinnOderVerlustvortrag.Text))
             {
@@ -139,9 +140,9 @@ namespace IDPA_Vorprojekt_2024
                     UnderlineGewinnOderVerlustvortrag.Stroke = red;
                     validationViolations++;
                 }
-            }
+            }*/
 
-            //Gewinnvortrag muss grösser als 0 sein.
+            //Jahresgewinn muss grösser als 0 sein.
             if (IsDouble(TextBoxJahresgewinn.Text))
             {
                 if (Convert.ToDouble(TextBoxJahresgewinn.Text) <= 0)

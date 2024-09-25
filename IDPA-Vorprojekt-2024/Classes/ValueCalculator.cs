@@ -35,7 +35,7 @@ namespace IDPA_Vorprojekt_2024.Classes
 
         public double CalculateRemainingAmountForAdditionalDividend() //Rest für zusätzliche Dividende
         {
-            double baseDividend = (_userValues.AktienUndPartizipationskapital / 100) * 5;
+            double baseDividend = _userValues.AktienUndPartizipationskapital * 0.05;
             return _outputValues.AvailableProfit - baseDividend;
         }
 
@@ -50,8 +50,8 @@ namespace IDPA_Vorprojekt_2024.Classes
             else additionalDividendPercentage = (int)_userValues.GewünschteDividende;
 
             double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
-            double secondAdditionalDividend = 0.1 * additionalDividend;
-            return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend - secondAdditionalDividend;
+            //double secondAdditionalReserve = 0.1 * additionalDividend;
+            return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend; //- secondAdditionalReserve;
         }
 
         private double CalculateFirstReserve() 
