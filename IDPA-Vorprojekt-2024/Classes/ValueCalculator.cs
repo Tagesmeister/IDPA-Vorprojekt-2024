@@ -55,8 +55,6 @@ namespace IDPA_Vorprojekt_2024.Classes
                     _userValues.Jahresgewinn = 0;
                 }
             }
-
-            //MessageBox.Show($"Ein Verlustvortrag lag vor.\nAktueller Verlustvortrag: {_userValues.GewinnOderVerlustvortrag}\nAktuelle gesetzlichen Reserven: {_userValues.GesetzlicheReserven}\nAktueller Jahresgewinn: {_userValues.Jahresgewinn}");
         }
 
         public double CalculateNetIncome() //Bilanzgewinn
@@ -90,15 +88,14 @@ namespace IDPA_Vorprojekt_2024.Classes
 
             double additionalDividend = additionalDividendPercentage * _userValues.AktienUndPartizipationskapital / 100;
             _outputValues.BetragDerAusschüttungVonDividenden += additionalDividend;
-            //double secondAdditionalReserve = 0.1 * additionalDividend;
-            return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend; //- secondAdditionalReserve;
+            return _outputValues.RemainingAmountForAdditionalDividend - additionalDividend;
         }
 
         private double CalculateFirstReserve() 
         {
-            double firstReserveLimit = 0.5 * _userValues.AktienUndPartizipationskapital; //Betrag bis 50% AK --> Art. 672 Abs. 2
+            double firstReserveLimit = 0.5 * _userValues.AktienUndPartizipationskapital;
 
-            double firstReserve = 0.05 * _userValues.Jahresgewinn; //5% vom RG --> Art. 672 Abs. 1
+            double firstReserve = 0.05 * _userValues.Jahresgewinn;
             if (IsFirstReserveToHigh(firstReserve, firstReserveLimit))
             {
                 firstReserve = firstReserveLimit - _userValues.GesetzlicheReserven;
