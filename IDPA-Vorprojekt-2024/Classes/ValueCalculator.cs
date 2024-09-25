@@ -79,6 +79,7 @@ namespace IDPA_Vorprojekt_2024.Classes
         public double CalculateRetainedEarnings() //Neuer Gewinnvortrag
         {
             int additionalDividendPercentage = (int)Math.Floor(_outputValues.RemainingAmountForAdditionalDividend / (0.011 * _userValues.AktienUndPartizipationskapital));
+            if (additionalDividendPercentage < 0) additionalDividendPercentage = 0;
 
             if (_userValues.GewünschteDividende > additionalDividendPercentage)
             {

@@ -156,6 +156,17 @@ namespace IDPA_Vorprojekt_2024
                 }
             }
 
+            //Gewünschte Dividende >= 0 sein.
+            if (IsDouble(TextBoxGewünschteDividende.Text))
+            {
+                if (Convert.ToDouble(TextBoxGewünschteDividende.Text) < 0)
+                {
+                    UnderlineGewünschteDividende.Stroke = red;
+                    validationViolations++;
+                    ToolTipErrors.Content += "Gewünschte Dividende darf nicht negativ sein!";
+                }
+            }
+
             if (validationViolations > 0)
             {
                 ToolTipErrors.IsOpen = true;
